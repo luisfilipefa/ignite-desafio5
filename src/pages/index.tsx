@@ -1,6 +1,7 @@
 import { Box, Button } from '@chakra-ui/react';
 import { useInfiniteQuery } from 'react-query';
 import { useMemo } from 'react';
+import Head from 'next/head';
 
 import { CardList } from '../components/CardList';
 import { Error } from '../components/Error';
@@ -52,9 +53,8 @@ export default function Home(): JSX.Element {
 
   const formattedData = useMemo(() => {
     let cards = [] as Card[];
-    const pages = data?.pages;
 
-    pages?.forEach(page => {
+    data?.pages.forEach(page => {
       cards = [...cards, ...page.data];
     });
 
@@ -71,6 +71,11 @@ export default function Home(): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>Upfi</title>
+        <link rel="shortcut icon" href="logo.svg" />
+      </Head>
+
       <Header />
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
